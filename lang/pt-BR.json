@@ -137,6 +137,8 @@
       },
       "CheckFormat": "Teste de {ability}",
       "SaveFormat": "Salvaguarda de {ability}"
+      "CheckTooltip": "Clique Esquerdo: Teste de Atributo",
+      "SaveTooltip": "Clique Direito: Salvaguarda"
     },
     "Portrait": {
       "SetTo0HP": "Definir para 0 PV",
