@@ -136,7 +136,7 @@
         "Survival": "Sobrevivência"
       },
       "CheckFormat": "Teste de {ability}",
-      "SaveFormat": "Salvaguarda de {ability}"
+      "SaveFormat": "Salvaguarda de {ability}",
       "CheckTooltip": "Clique Esquerdo: Teste de Atributo",
       "SaveTooltip": "Clique Direito: Salvaguarda"
     },
