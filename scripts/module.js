@@ -172,6 +172,18 @@ class DnD5eAdapter {
     }
 
     /**
+     * Check if an actor is compatible with this adapter
+     * @param {Actor} actor - The actor to check
+     * @returns {boolean} True if compatible
+     */
+    isCompatible(actor) {
+        if (!actor) return false;
+        // Ignore Group Actors (vehicles/party tracking)
+        if (actor.type === 'group') return false;
+        return true;
+    }
+
+    /**
      * Get default portrait data configuration for D&D 5e
      * Called by core when user hasn't configured portrait data yet
      * @returns {Array<Object>} Default slot configurations

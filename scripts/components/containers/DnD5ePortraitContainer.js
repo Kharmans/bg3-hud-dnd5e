@@ -281,6 +281,10 @@ export async function createDnD5ePortraitContainer() {
          */
         isVisible() {
             if (!this.actor || this.actor.type !== 'character') return false;
+            
+            // Check setting
+            if (game.settings.get('bg3-hud-dnd5e', 'hideDeathSaves')) return false;
+            
             const currentHP = this.actor.system.attributes?.hp?.value || 0;
             return currentHP <= 0;
         }

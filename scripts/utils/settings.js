@@ -230,6 +230,17 @@ export function registerSettings() {
     default: true
   });
 
+  // Hide Death Saves UI
+  game.settings.register(MODULE_ID, 'hideDeathSaves', {
+    name: `${MODULE_ID}.Settings.HideDeathSaves`,
+    hint: `${MODULE_ID}.Settings.HideDeathSavesHint`,
+    scope: 'client',
+    config: false,
+    type: Boolean,
+    default: false,
+    onChange: () => ui.BG3HUD_APP?.refresh()
+  });
+
   // CPR Generic Actions button setting (vertical button next to adv container)
   game.settings.register(MODULE_ID, 'enableCPRGenericActions', {
     name: `${MODULE_ID}.Settings.EnableCPRGenericActions`,
@@ -357,7 +368,7 @@ export function registerSettings() {
     moduleId: MODULE_ID,
     titleKey: `${MODULE_ID}.Settings.Display.MenuTitle`,
     sections: [
-      { legend: `${MODULE_ID}.Settings.Display.Legend`, keys: ['showItemNames', 'showItemUses', 'showHealthOverlay', 'showHPControls'] }
+      { legend: `${MODULE_ID}.Settings.Display.Legend`, keys: ['showItemNames', 'showItemUses', 'showHealthOverlay', 'showHPControls', 'hideDeathSaves'] }
     ]
   });
 
