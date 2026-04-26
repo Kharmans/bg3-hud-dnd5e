@@ -47,7 +47,7 @@ export async function createDnD5eWeaponSetContainer() {
 
                 return false;
             } catch (error) {
-                console.warn('BG3 HUD D&D 5e | Error checking two-handed weapon:', error);
+                console.warn('[bg3-hud-dnd5e] Error checking two-handed weapon:', error);
                 return false;
             }
         }
@@ -225,7 +225,7 @@ export async function createDnD5eWeaponSetContainer() {
                         if (!this._isWeaponOrShield(item)) continue;
                         items.push(item);
                     } catch (error) {
-                        console.warn('BG3 HUD D&D 5e | Failed to resolve item for weapon set cell', error);
+                        console.warn('[bg3-hud-dnd5e] Failed to resolve item for weapon set cell', error);
                     }
                 }
                 return items;

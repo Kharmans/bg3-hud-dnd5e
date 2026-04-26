@@ -188,7 +188,7 @@ export async function createDnD5ePortraitContainer() {
          */
         async updateHealth() {
             if (!this.element) {
-                console.warn('PortraitHealth | Cannot update health, element not rendered yet');
+                console.warn('[bg3-hud-dnd5e] PortraitHealth | Cannot update health, element not rendered yet');
                 return;
             }
 
@@ -521,7 +521,7 @@ export async function createDnD5ePortraitContainer() {
                     await this.update();
                 }
             } catch (error) {
-                console.error('DeathSaves | Error rolling death save:', error);
+                console.error('[bg3-hud-dnd5e] DeathSaves | Error rolling death save:', error);
             }
         }
 

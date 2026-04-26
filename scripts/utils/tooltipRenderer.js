@@ -468,7 +468,7 @@ export async function renderDnD5eTooltip(data, options = {}) {
                 parentItem = data.item instanceof Item ? data.item : await fromUuid(data.item.uuid);
             } else {
                 // Fallback: try to get item from the activity's context
-                console.warn('BG3 HUD D&D 5e | Could not determine parent item for activity:', data);
+                console.warn('[bg3-hud-dnd5e] Could not determine parent item for activity:', data);
                 // Try to use the activity as if it were an item
                 cardData = await getItemCardData(data, options);
                 templatePath = 'modules/bg3-hud-dnd5e/templates/tooltips/item-tooltip.hbs';
@@ -488,7 +488,7 @@ export async function renderDnD5eTooltip(data, options = {}) {
         const html = await foundry.applications.handlebars.renderTemplate(templatePath, cardData);
 
         if (!html) {
-            console.warn('BG3 HUD D&D 5e | Template rendered empty HTML');
+            console.warn('[bg3-hud-dnd5e] Template rendered empty HTML');
             return null;
         }
 
@@ -498,8 +498,8 @@ export async function renderDnD5eTooltip(data, options = {}) {
             direction: 'UP'
         };
     } catch (error) {
-        console.error('BG3 HUD D&D 5e | Error rendering tooltip:', error);
-        console.error('BG3 HUD D&D 5e | Error stack:', error.stack);
+        console.error('[bg3-hud-dnd5e] Error rendering tooltip:', error);
+        console.error('[bg3-hud-dnd5e] Error stack:', error.stack);
         return null;
     }
 }

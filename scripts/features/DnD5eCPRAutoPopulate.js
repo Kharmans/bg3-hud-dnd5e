@@ -92,7 +92,7 @@ export class DnD5eCPRAutoPopulate {
             // Set defaults if we found any
             if (defaultUuids.length > 0) {
                 await game.settings.set(MODULE_ID, cprConfig.settingsKey, defaultUuids);
-                console.log(`[bg3-hud-dnd5e] Initialized default CPR actions (${cprConfig.isModern ? '2024' : '2014'}): ${defaultUuids.length} actions`);
+                console.info(`[bg3-hud-dnd5e] Initialized default CPR actions (${cprConfig.isModern ? '2024' : '2014'}): ${defaultUuids.length} actions`);
             }
         } catch (error) {
             console.warn('[bg3-hud-dnd5e] Failed to initialize default CPR actions:', error);
@@ -109,7 +109,7 @@ export class DnD5eCPRAutoPopulate {
      */
     async populateQuickAccess(actor, actionUuids, providedPersistence = null) {
         if (!actor || !actionUuids || actionUuids.length === 0) {
-            console.log('[bg3-hud-dnd5e] CPR AutoPopulate: Skipping - no actor or action UUIDs');
+            console.debug('[bg3-hud-dnd5e] CPR AutoPopulate: Skipping - no actor or action UUIDs');
             return;
         }
 
@@ -130,11 +130,11 @@ export class DnD5eCPRAutoPopulate {
             const hasExistingItems = Object.keys(existingItems).length > 0;
 
             if (hasExistingItems) {
-                console.log(`[bg3-hud-dnd5e] CPR AutoPopulate: Skipping - quickAccess already has ${Object.keys(existingItems).length} items`);
+                console.debug(`[bg3-hud-dnd5e] CPR AutoPopulate: Skipping - quickAccess already has ${Object.keys(existingItems).length} items`);
                 return; // Don't overwrite existing items
             }
 
-            console.log(`[bg3-hud-dnd5e] CPR AutoPopulate: Populating with ${actionUuids.length} CPR actions for actor ${actor.name}`);
+            console.debug(`[bg3-hud-dnd5e] CPR AutoPopulate: Populating with ${actionUuids.length} CPR actions for actor ${actor.name}`);
 
             // For each compendium UUID, ensure item exists on actor and collect embedded UUIDs
             const embeddedActions = [];
@@ -157,7 +157,7 @@ export class DnD5eCPRAutoPopulate {
                     actorItem = created?.[0];
 
                     if (actorItem) {
-                        console.log(`[bg3-hud-dnd5e] CPR AutoPopulate: Created item ${actorItem.name} on actor`);
+                        console.debug(`[bg3-hud-dnd5e] CPR AutoPopulate: Created item ${actorItem.name} on actor`);
                     }
                 }
 
@@ -205,7 +205,7 @@ export class DnD5eCPRAutoPopulate {
             // Save updated state
             await tempPersistence.saveState(state);
 
-            console.log(`[bg3-hud-dnd5e] Populated quickAccess with ${maxActions} CPR actions (embedded) in slots: ${populatedSlots.join(', ')}`);
+            console.debug(`[bg3-hud-dnd5e] Populated quickAccess with ${maxActions} CPR actions (embedded) in slots: ${populatedSlots.join(', ')}`);
 
             // Delay before refreshing HUD (50ms after quickAccess population)
             await new Promise(resolve => setTimeout(resolve, 50));

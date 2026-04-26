@@ -48,7 +48,7 @@ export class DnD5eInfoContainer extends InfoContainer {
    */
   async onButtonRightClick(event) {
     if (!this.actor) {
-      console.warn('DnD5e Info | No actor available for initiative roll');
+      console.warn('[bg3-hud-dnd5e] DnD5e Info | No actor available for initiative roll');
       return;
     }
 
@@ -68,7 +68,7 @@ export class DnD5eInfoContainer extends InfoContainer {
         });
       }
     } catch (err) {
-      console.error('DnD5e Info | Initiative roll failed', err);
+      console.error('[bg3-hud-dnd5e] DnD5e Info | Initiative roll failed', err);
       ui.notifications?.error(game.i18n.localize(`${MODULE_ID}.Notifications.FailedToRollInitiative`));
     }
   }
@@ -136,7 +136,7 @@ export class DnD5eInfoContainer extends InfoContainer {
             fastForward: e.shiftKey
           });
         } catch (err) {
-          console.error('DnD5e Info | Ability check roll failed', { abilityId, error: err });
+          console.error('[bg3-hud-dnd5e] DnD5e Info | Ability check roll failed', { abilityId, error: err });
         }
       });
 
@@ -153,7 +153,7 @@ export class DnD5eInfoContainer extends InfoContainer {
             fastForward: e.shiftKey
           });
         } catch (err) {
-          console.error('DnD5e Info | Save roll failed', { abilityId, error: err });
+          console.error('[bg3-hud-dnd5e] DnD5e Info | Save roll failed', { abilityId, error: err });
         }
       });
 
@@ -248,7 +248,7 @@ export class DnD5eInfoContainer extends InfoContainer {
           e.stopPropagation();
 
           if (!this.actor?.system?.skills?.[skillId]) {
-            console.warn('DnD5e Info | Skill data not ready', { skillId });
+            console.warn('[bg3-hud-dnd5e] DnD5e Info | Skill data not ready', { skillId });
             return;
           }
 
@@ -261,7 +261,7 @@ export class DnD5eInfoContainer extends InfoContainer {
               fastForward: e.shiftKey
             });
           } catch (err) {
-            console.error('DnD5e Info | Skill roll failed', { skillId, error: err });
+            console.error('[bg3-hud-dnd5e] DnD5e Info | Skill roll failed', { skillId, error: err });
           }
         });
 

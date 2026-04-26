@@ -35,7 +35,7 @@ export class DnD5eAutoSort extends AutoSortFramework {
                     };
                 }
             } catch (error) {
-                console.warn(`BG3 HUD D&D 5e | Failed to fetch item data for ${item.uuid}:`, error);
+                console.warn(`[bg3-hud-dnd5e] Failed to fetch item data for ${item.uuid}:`, error);
                 item.sortData = {
                     name: item.name || '',
                     spellLevel: 99,
