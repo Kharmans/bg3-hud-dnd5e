@@ -1,3 +1,8 @@
+## [0.3.0] - 2026-04-28
+
+### Changed
+- Keeps pace with core 0.3.0: passive choices, portrait (token vs art), and your advantage/disadvantage HUD buttons still update correctly when those change — same flow, internals lined up with the shared HUD codebase.
+
 ## [Branch Update: feature/minor-polish] - 2026-04-28
 
 ### Changed

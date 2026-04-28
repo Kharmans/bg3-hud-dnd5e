@@ -172,6 +172,47 @@ class DnD5eAdapter {
     }
 
     /**
+     * React to HUD flag deltas from this adapter module on the actor (`flags[MODULE_ID]`).
+     * @param {Record<string, unknown>} adapterFlags
+     * @param {*} hotbarApp
+     * @returns {Promise<boolean>}
+     */
+    async onAdapterFlagsChanged(adapterFlags, hotbarApp) {
+        let handled = false;
+
+        if (Object.prototype.hasOwnProperty.call(adapterFlags, 'selectedPassives')) {
+            if (hotbarApp.components?.hotbar?.passivesContainer) {
+                await hotbarApp.components.hotbar.passivesContainer.render();
+                handled = true;
+            }
+        }
+
+        if (Object.prototype.hasOwnProperty.call(adapterFlags, 'useTokenImage') ||
+            Object.prototype.hasOwnProperty.call(adapterFlags, 'scaleWithToken')) {
+            const portraitContainer = hotbarApp.components?.portrait;
+            if (portraitContainer) {
+                await portraitContainer.render();
+                handled = true;
+            }
+        }
+
+        const advStateKeys = ['advState', '-=advState'];
+        const advOnceKeys = ['advOnce', '-=advOnce'];
+        const advStateChanged = advStateKeys.some((key) => Object.prototype.hasOwnProperty.call(adapterFlags, key));
+        const advOnceChanged = advOnceKeys.some((key) => Object.prototype.hasOwnProperty.call(adapterFlags, key));
+
+        if (advStateChanged || advOnceChanged) {
+            const situationalBonusesContainer = hotbarApp.components?.situationalBonuses;
+            if (situationalBonusesContainer && typeof situationalBonusesContainer.updateButtons === 'function') {
+                situationalBonusesContainer.updateButtons();
+                handled = true;
+            }
+        }
+
+        return handled;
+    }
+
+    /**
      * Check if an actor is compatible with this adapter
      * @param {Actor} actor - The actor to check
      * @returns {boolean} True if compatible
